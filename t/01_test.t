@@ -5,7 +5,6 @@ use Test::Base;
 use Encode;
 use Encode::DoubleEncodedUTF8;
 
-
 filters {
     input => [ 'chomp', 'string' ],
     expected => [ 'chomp', 'string' ]
@@ -36,6 +35,12 @@ __END__
 \xe5\xae\xae\xc3\xa5\xc2\xae\xc2\xae\xe5\xae\xae\xc3\xa5\xc2\xae\xc2\xae
 --- expected
 \x{5bae}\x{5bae}\x{5bae}\x{5bae}
+
+=== More than 2 characters
+--- input
+\xc3\xa5\xc2\xae\xc2\xae\xc3\xa5\xc2\xae\xc2\xae
+--- expected
+\x{5bae}\x{5bae}
 
 === Dodgy Latin-1
 --- input
