@@ -1,0 +1,27 @@
+This is Perl module Encode::DoubleEncodedUTF8.
+
+INSTALLATION
+
+Encode::DoubleEncodedUTF8 installation is straightforward. If your CPAN shell is set up,
+you should just be able to do
+
+    % cpan Encode::DoubleEncodedUTF8
+
+Download it, unpack it, then build it as per the usual:
+
+    % perl Makefile.PL
+    % make && make test
+
+Then install it:
+
+    % make install
+
+DOCUMENTATION
+
+Encode::DoubleEncodedUTF8 documentation is available as in POD. So you can do:
+
+    % perldoc Encode::DoubleEncodedUTF8
+
+to read the documentation online with your favorite pager.
+
+Tatsuhiko Miyagawa
