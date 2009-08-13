@@ -70,7 +70,7 @@ Encode::DoubleEncodedUTF8 - Fix double encoded UTF-8 bytes to the correct one
   my $bytes  = encode_utf8("\x{5bae}");
   my $dodgy_utf8 = $string . $bytes; # $bytes is now double encoded
 
-  my $fixed = decode("utf-8-de", $dodgy_utf8); # "\x{5bae}\x{5bae}"
+  my $fixed = decode("utf-8-de", encode_utf8($dodgy_utf8)); # "\x{5bae}\x{5bae}"
 
 =head1 DESCRIPTION
 
