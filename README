@@ -1,27 +1,32 @@
-This is Perl module Encode::DoubleEncodedUTF8.
+NAME
+    Encode::DoubleEncodedUTF8 - Fix double encoded UTF-8 bytes to the
+    correct one
 
-INSTALLATION
+SYNOPSIS
+      use Encode;
+      use Encode::DoubleEncodedUTF8;
 
-Encode::DoubleEncodedUTF8 installation is straightforward. If your CPAN shell is set up,
-you should just be able to do
+      my $string = "\x{5bae}";
+      my $bytes  = encode_utf8("\x{5bae}");
+      my $dodgy_utf8 = $string . $bytes; # $bytes is now double encoded
 
-    % cpan Encode::DoubleEncodedUTF8
+      my $fixed = decode("utf-8-de", encode_utf8($dodgy_utf8)); # "\x{5bae}\x{5bae}"
 
-Download it, unpack it, then build it as per the usual:
+DESCRIPTION
+    Encode::DoubleEncodedUTF8 adds a new encoding "utf-8-de" and fixes
+    double encoded utf-8 bytes found in the original bytes to the correct
+    Unicode entity.
 
-    % perl Makefile.PL
-    % make && make test
+    The double encoded utf-8 frequently happens when strings with UTF-8 flag
+    and without are concatenated. See encoding::warnings for details.
 
-Then install it:
+AUTHOR
+    Tatsuhiko Miyagawa <miyagawa@bulknews.net>
 
-    % make install
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
-DOCUMENTATION
+SEE ALSO
+    encoding::warnings, Test::utf8
 
-Encode::DoubleEncodedUTF8 documentation is available as in POD. So you can do:
-
-    % perldoc Encode::DoubleEncodedUTF8
-
-to read the documentation online with your favorite pager.
-
-Tatsuhiko Miyagawa

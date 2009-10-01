@@ -1,6 +1,7 @@
 use inc::Module::Install;
 name 'Encode-DoubleEncodedUTF8';
 all_from 'lib/Encode/DoubleEncodedUTF8.pm';
+readme_from 'lib/Encode/DoubleEncodedUTF8.pm';
 
 requires 'Encode', 0.12;
 
