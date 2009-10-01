@@ -4,7 +4,7 @@ use strict;
 use base qw( Encode::Encoding );
 use Encode 2.12 ();
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 __PACKAGE__->Define('utf-8-de');
 
@@ -66,11 +66,8 @@ Encode::DoubleEncodedUTF8 - Fix double encoded UTF-8 bytes to the correct one
   use Encode;
   use Encode::DoubleEncodedUTF8;
 
-  my $string = "\x{5bae}";
-  my $bytes  = encode_utf8("\x{5bae}");
-  my $dodgy_utf8 = $string . $bytes; # $bytes is now double encoded
-
-  my $fixed = decode("utf-8-de", encode_utf8($dodgy_utf8)); # "\x{5bae}\x{5bae}"
+  my $dodgy_utf8 = "Some byte strings from the web/DB with double-encoded UTF-8 bytes";
+  my $fixed = decode("utf-8-de", $dodgy_utf8); # Fix it
 
 =head1 DESCRIPTION
 
@@ -79,8 +76,17 @@ double encoded utf-8 bytes found in the original bytes to the correct
 Unicode entity.
 
 The double encoded utf-8 frequently happens when strings with UTF-8
-flag and without are concatenated. See L<encoding::warnings> for
-details.
+flag and without are concatenated, for instance:
+
+  my $string = "L\x{e9}on";   # latin-1
+  utf8::upgrade($string);
+  my $bytes  = "L\xc3\xa9on"; # utf-8
+
+  my $dodgy_utf8 = encode_utf8($string . " " . $bytes); # $bytes is now double encoded
+
+  my $fixed = decode("utf-8-de", $dodgy_utf8); # "L\x{e9}on L\x{e9}on";
+
+See L<encoding::warnings> for more details.
 
 =head1 AUTHOR
 

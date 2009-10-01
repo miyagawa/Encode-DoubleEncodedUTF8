@@ -1,5 +1,8 @@
 Revision history for Perl extension Encode::DoubleEncodedUTF8
 
+0.04  Wed Sep 30 18:45:40 PDT 2009
+        - Simplify POD example
+        
 0.03  Wed Aug 12 19:14:44 PDT 2009
         - Fixed bugs in SYNOPSIS code
 
