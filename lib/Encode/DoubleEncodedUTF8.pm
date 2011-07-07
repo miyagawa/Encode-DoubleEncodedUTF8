@@ -69,6 +69,16 @@ Encode::DoubleEncodedUTF8 - Fix double encoded UTF-8 bytes to the correct one
   my $dodgy_utf8 = "Some byte strings from the web/DB with double-encoded UTF-8 bytes";
   my $fixed = decode("utf-8-de", $dodgy_utf8); # Fix it
 
+=head1 WARNINGS
+
+Use this module B<only> for testing, debugging, data recovery and
+working around with buggy software you I<can't> fix.
+
+B<Do not> use this module in your production code just to I<work
+around> bugs in the code you I<can> fix. This module is slow, and not
+perfect and may break the encodings if you run against correctly
+encoded strings. See L<perlunitut> for more details.
+
 =head1 DESCRIPTION
 
 Encode::DoubleEncodedUTF8 adds a new encoding C<utf-8-de> and fixes
