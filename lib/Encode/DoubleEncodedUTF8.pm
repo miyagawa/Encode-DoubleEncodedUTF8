@@ -4,7 +4,7 @@ use strict;
 use base qw( Encode::Encoding );
 use Encode 2.12 ();
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 __PACKAGE__->Define('utf-8-de');
 
